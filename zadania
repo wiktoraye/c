@@ -1,0 +1,228 @@
+ZADANIE 2.2.10
+
+#include <stdio.h>
+#include <stdlib.h>
+
+unsigned int nwd(unsigned int a,unsigned int b){
+  int t;
+  if(a>b){
+    t=a;
+    a=b;
+    b=t;
+  }
+  while(a%b!=0){
+    t=a;
+    a=b;
+    b=t%b;
+  }
+return b;
+}
+
+unsigned int suma_wzglednie_pierwszych(unsigned n){
+    int i;
+    int suma=0;
+    for(int i=2;i<n;i++){
+        if(nwd(i,n)==1){
+            suma=suma+i;
+        }
+    }
+    return suma;
+}
+
+void suma_max_dziel(){
+int i;
+int pom=0;
+int max=0;
+
+for(int i=1;i<1000;i++){
+    if(suma_wzglednie_pierwszych(i)>max){
+        max=suma_wzglednie_pierwszych(i);
+        pom=i;
+    }
+
+}
+printf("Najwieksza liczba wzglednie pierwsza wynosi %d dla liczby %d\n",max,pom);
+}
+
+void suma_min_dziel(){
+int i;
+int pom=0;
+int min=suma_wzglednie_pierwszych(100);
+
+for(int i=100;i<1000;i++){
+    if(suma_wzglednie_pierwszych(i)<min){
+        min=suma_wzglednie_pierwszych(i);
+        pom=i;
+    }
+
+}
+printf("Najmniejsza liczba wzglednie pierwsza wynosi %d dla liczby %d",min,pom);
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    printf("%d\n",suma_wzglednie_pierwszych(n));
+    suma_max_dziel();
+    suma_min_dziel();
+
+
+    return 0;
+}
+
+2.2.17 i 2.2.20\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+void zlicz(){
+static int ile=0;
+ile++;
+printf("funkcja zostala wywolana %d razy \n",ile);
+}
+
+void suma_zlicz(int n){
+static int suma=0;
+suma=suma+n;
+printf("Suma wczytanych dotychczas liczby wynosi %d\n",suma);
+}
+
+int main()
+{
+    
+    suma_zlicz(5);
+    suma_zlicz(10);
+    suma_zlicz(12);
+
+return 0;
+}
+
+
+2.2.21 i 2.2.22 i 2.2.23(fibonacci)\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+   int essa(int n){
+    if(n==0){
+        return 1;
+    }
+    return 2*essa(n-1)+5;
+    }
+
+int essa2(int n){
+if(n==0 || n==1){
+    return 1;
+}
+return essa2(n-1)+2*essa2(n-2)+3;
+}
+
+int fibonacci(int n){
+if(n==0 || n==1){
+    return 1;
+}
+return fibonacci(n-1)+fibonacci(n-2);
+}
+
+void iloraz_fibonaci(int n){
+int i;
+for(int i=0;i<n;i++){
+    printf("a_%d/a_%d=%f\n",i+1,i,(float)(fibonacci(i+1))/fibonacci(i));
+}
+}
+
+int main()
+{
+for(int i=0;i<10;i++){
+    printf("%d ",essa(i));
+}
+
+printf("\n");
+for(int i=0;i<10;i++){
+    printf("%d ",essa2(i));
+}
+
+printf("\n");
+for(int i=0;i<10;i++){
+    printf("%d ",fibonacci(i));
+}
+    return 0;
+}
+
+
+2.2.24\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+ 
+int funkcja(int n){
+if(n==0){
+    return 1;
+}
+int suma=0;
+for(int i=0;i<n;i++){
+    suma=suma+funkcja(i);
+}
+return suma;
+}
+int main()
+{
+    for(int k=0;k<10;k++){
+        printf("%d ",funkcja(k));
+    }
+    return 0;
+}
+
+
+2.2.25\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+#include <stdio.h>
+#include <stdlib.h>
+int funkcja2(int n){
+if(n<2){
+    return 1;
+}
+if(n%2==0){
+    return funkcja2(n-1)+n;
+}
+return funkcja2(n-1)*n;
+}
+int main()
+{
+    for(int k=0;k<10;k++){
+        printf("%d ",funkcja2(k));
+    }
+    return 0;
+}
+
+2.2.26\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+#include <stdio.h>
+#include <stdlib.h>
+int funkcja3(int n){
+if(n<3)
+    return 1;
+if(n%3==0)
+{
+    return funkcja3(n-1)+funkcja3(n-2);
+}
+if(n%3==1){
+    return 5*funkcja3(n-1)+4;
+}
+return funkcja3(n-1)+4;
+}
+int main()
+{
+    for(int k=0;k<10;k++){
+        printf("%d ",funkcja3(k));
+    }
+    return 0;
+}
+
+2.2.27\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+#include <stdio.h>
+#include <stdlib.h>
+
+int funkcja4(int n, int m){
+if(m==0)
+    return n;
+if(n==0)
+    return m;
+return funkcja4(n-1,m)+funkcja4(n,m-1)+funkcja4(n-1,m-1);
+}
+
+
+int main()
+{
+  printf("%d ",funkcja4(5,7));
+    return 0;
+}
