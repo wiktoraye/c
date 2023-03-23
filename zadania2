@@ -1,0 +1,209 @@
+    int liczba=-505;
+    printf("Wartosc zmiennej to:%d\n",liczba);
+    printf("Adres zmiennej to: %p\n\n",liczba);
+    //
+    int *wskaznik=&liczba;
+    printf("Adres zmiennej to:%p\n",&liczba);
+    printf("Adres przechowywany we wskazniku to:%5\n",wskaznik);
+    printf("Wskazywana wartosc to: %d\n",*wskaznik);
+    //cw 3.1.000 wskazniki na stala i stale wskazniki
+    int i=0;
+    const int *a=&i;//wskaznik na stala nie zmieniamy wartosci
+    int * const b=&i;//staly wskaznk nie mozna przestwic jego
+    int const * const c=&i;//staly wskaznik na stala
+    
+    
+/////////////////////////////////////////////////////////////////////////////
+    3.2.1
+    #include <stdio.h>
+#include <stdlib.h>
+
+int minimum(int* x,int* y){
+if(*x>*y)
+    return *y;
+    return *x;
+}
+
+int main(){
+    int a=7;
+    int b=5;
+    printf("%d",minimum(&a,&b));
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+3.2.2
+#include <stdio.h>
+#include <stdlib.h>
+
+int adres_minimum(int* x,int* y){
+if(*x>*y)
+    return y;
+    return x;
+}
+
+int main(){
+    int a=7;
+    int b=5;
+    printf("a = %p\n",&a);
+    printf("b = %p\n",&b);
+    printf("min = %p",adres_minimum(&a,&b));
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+3.2.3
+#include <stdio.h>
+#include <stdlib.h>
+
+void zamiana(int* x,int* y){
+int pom1=*x;
+*x=*y;
+*y=pom1;
+
+}
+
+int main(){
+    int a=7;
+    int b=5;
+    printf("a = %d\n",a);
+    printf("b = %d\n",b);
+    zamiana(&a,&b);
+    printf("Zamiana\n");
+    printf("a = %d\n",a);
+    printf("b = %d\n",b);
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+3.2.4
+#include <stdio.h>
+#include <stdlib.h>
+
+void zamiana(int* x,int* y){
+if(*y>*x){
+int pom=*x;
+*x=*y;
+*y=pom;
+}
+}
+
+int main(){
+    int a=7;
+    int b=9;
+    printf("a = %d\n",a);
+    printf("b = %d\n",b);
+    zamiana(&a,&b);
+    printf("Zamiana\n");
+    printf("a = %d\n",a);
+    printf("b = %d\n",b);
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+3.2.5
+#include <stdio.h>
+#include <stdlib.h>
+
+int suma(const int* x,const int* y){
+return *x+*y;
+
+}
+
+int main(){
+     const int a=10;
+     const int b=9;
+    printf("%d",suma(&a,&b));
+
+}
+/////////////////////////////////////////////////////////////////////////////
+3.2.6
+#include <stdio.h>
+#include <stdlib.h>
+
+void przypisz(int n,int* w){
+*w=n;
+}
+
+int main(){
+     int x=5;
+     przypisz(3,&x);
+     printf("%d",x);
+     return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+3.2.9
+#include <stdio.h>
+#include <stdlib.h>
+
+int* rezerwuj(){
+return malloc(sizeof(int));
+}
+
+int main(){
+     int* wsk=rezerwuj();
+     printf("%p\n",wsk);
+     printf("%d",*wsk);
+
+     return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+3.2.11
+#include <stdio.h>
+#include <stdlib.h>
+
+int* rezerwuj(int n){
+return malloc(n*sizeof(int));
+}
+
+int main(){
+     int* wsk=rezerwuj(10);
+     printf("%p\n",wsk);
+     printf("%d",*wsk);
+
+     return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+3.2.13
+#include <stdio.h>
+#include <stdlib.h>
+
+double fun(int x){
+return 3*x;
+}
+
+double gie(double (*f)(int x),int n){
+    return f(n);
+}
+int main(){
+
+printf("%f",gie(&fun,8));
+
+     return 0;
+}
+/////////////////////////////////////////////////////////////////////////////
+3.2.14
+#include <stdio.h>
+#include <stdlib.h>
+
+double fun(int x){
+return x-1;
+}
+
+double kwadrat(x){
+    return (x-1)*(x-1)*(x-1);
+}
+
+int h(double (*f)(int x),double (*g)(int x),int n){
+    for(int i=0;i<=n;i++){
+   if(f(n)!=g(n))
+    return 0;
+    }
+    return 1;
+}
+int main(){
+
+printf("%d\n",h(&fun,&kwadrat,2));
+
+     return 0;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
