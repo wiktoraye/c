@@ -1,0 +1,133 @@
+TABLICE
+#include <stdio.h>
+#include <stdlib.h>
+
+void wypisz(unsigned n, int *tab){
+for(int i=0;i<n;i++){
+    printf("%d\t",tab[i]);
+}
+printf("\n");
+}
+
+int main()
+{
+    int tablica[4];
+    int tabliczka[100];
+    printf("%d\n",sizeof(tabliczka));
+    tablica[0]=1;
+    tablica[1]=7;
+    tablica[2]=4;
+    tablica[3]=8;
+    wypisz(4,tablica);
+    int tablica2[]={7,9,51,-208};
+    printf("%d\n",sizeof(tabliczka)/sizeof(int));
+    wypisz(4,tablica2);
+    int *tabb=malloc(4*sizeof(int));
+    tabb[0]=1;
+    tabb[1]=3;
+    tabb[2]=5;
+    tabb[3]=7;
+    wypisz(4,tabb);
+    return 0;
+}
+////////////////////////////////////////////////////////////////////////////////////////
+4.2.2a,b
+#include <stdio.h>
+#include <stdlib.h>
+
+int suma(unsigned n, int *tab){
+    int suma=0;
+for(int i=0;i<n;i++){
+    suma=suma+tab[i];
+}
+return suma;
+}
+
+float srednia(unsigned n, int *tab){
+return (float)suma(n,tab)/n;
+}
+
+int main()
+{
+    int tab[]={1,2,3,4};
+    printf("%d",suma(4,tab));
+    printf("\n%f",srednia(4,tab));
+    return 0;
+}
+////////////////////////////////////////////////////////////////////////////////////////
+4.2.4
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+float sredniag(unsigned n,int *tab){
+    int iloczyn=1;
+for(int i=0;i<n;i++){
+    iloczyn=iloczyn*tab[i];
+}
+return (float)pow(iloczyn,1.0/n);
+}
+ float sredniah(unsigned n,int *tab){
+ float a=0;
+ for(int i=0;i<n;i++){
+    a=a+(1.0/tab[i]);
+}
+return (float)n/a;
+ }
+
+int main()
+{
+    int tab[]={7,1,5,2};
+    printf("%.2f",sredniag(4,tab));
+    printf("\n%.2f",sredniah(4,tab));
+    return 0;
+}
+////////////////////////////////////////////////////////////////////////////////////////
+SITO 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+void sito(unsigned int n){
+    bool tab[n];
+    for(int i=0;i<n;i++){
+        tab[i]=true;
+    }
+for(int j=2;j<n;j++){
+        for(int k=2*j;k<n;k=k+j){
+            tab[k]=false;
+        }
+    }
+    for(int x=0;x<n;x++){
+        if(tab[x]==true) printf("%d \t",x);
+    }
+    printf("\n");
+    for(int x=n;x>0;x--){
+        if(tab[x]==true){
+        printf("To jest ostatnia liczba pierwsza z przedzialu: %d \t",x);
+        break;
+        }
+    }
+    printf("\n");
+    int licznik=0;
+    for(int x=2;x<n;x++){
+        if(tab[x]==true) licznik++;
+    }
+    printf("Tyle jest liczb pierwszych w podanym przez ciebie przedziale: %d",licznik);
+    for(int x=2;x<n;x++){
+
+    }
+
+}
+
+
+
+int main()
+{
+    sito(100);
+
+
+    return 0;
+}
+////////////////////////////////////////////////////////////////////////////////////////
+
