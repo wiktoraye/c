@@ -1,0 +1,78 @@
+4.2.7
+c)
+void swap(unsigned int n,int *tab,int *tab2,int *tab3){
+int pom;
+for(int i=0;i<n;i++){
+pom=tab2[i];
+tab2[i]=tab[i];
+tab[i]=tab3[i];
+tab3[i]=pom;
+
+}
+}
+
+/////////////////////////////////////////////////////////////////////////
+4.2.8
+a)
+
+void doklej(unsigned int n,int *tab,int *tab2,int *tab3){
+for(int i=0;i<n;i++){
+    tab3[i]=tab[i];
+}
+for(int i=n;i<2*n;i++){
+    tab3[i]=tab2[i-n];
+}
+}
+
+b)
+
+/////////////////////////////////////////////////////////////////////////
+4.2.9
+void sortowanie(unsigned int n,int *tab,int *tab2,int *tab3){
+    int max,min,srod;
+for(int i=0;i<n;i++){
+    if(tab[i]>tab2[i]&&tab[i]>tab3[i]){
+        max=tab[i];
+    }
+    else if(tab2[i]>tab3[i]){
+        max=tab2[i];
+    }
+    else{
+        max=tab3[i];
+    }
+
+
+    if(tab[i]<tab2[i]&&tab[i]<tab3[i]){
+        min=tab[i];
+    }
+    else if(tab2[i]<tab3[i]){
+        min=tab2[i];
+    }
+    else{
+        min=tab3[i];
+
+    srod=tab[i]+tab2[i]+tab3[i]-min-max;
+    tab[i]=max;
+    tab2[i]=srod;
+    tab3[i]=min;
+}
+
+}
+/////////////////////////////////////////////////////////////////////////
+4.2.10
+a,c)
+int maximum(int n,int *tab){
+    int max=tab[0];
+    int maxi;
+for(int i=0;i<n;i++){
+    if(tab[i]>max){
+        tab[i]=max;
+        maxi=i;
+    }
+
+}
+return maxi;
+}
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
