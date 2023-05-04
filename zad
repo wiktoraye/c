@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+void wypisz(unsigned int n, unsigned int m, int t[][m]){
+for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+        printf("%d\t",t[i][j]);
+    }
+    printf("\n");
+}
+printf("\n");
+}
+
+void zerujaca(unsigned int n, unsigned int m, int t[][m]){
+for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+        t[i][j]=0;
+    }
+}
+}
+
+int zsumuj(unsigned int n, unsigned int m, int t[][m]){
+int suma=0;
+for(int i=0;i<n;i++){
+    for(int j=0;j<m;j++){
+        suma=suma+t[i][j];
+    }
+}
+return suma;
+}
+
+void indeks_max_sredniej(unsigned int n, unsigned int m, int t[][m]){
+int suma=0;
+int max;
+int indeks;
+for(int i=0;i<n;i++){
+    suma=0;
+    for(int j=0;j<m;j++){
+        suma=suma+t[i][j];
+    }
+    if(i==0){
+        max=suma;
+    }
+    if(max<suma){
+        indeks=i;
+        max=suma;
+    }
+}
+return indeks;
+}
+
+
+
+int main()
+{
+
+int tablica[2][3]={{4,7,6},{5,2,9}};
+wypisz(2,3,tablica);
+
+
+    return 0;
+}
