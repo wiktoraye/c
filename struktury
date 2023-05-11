@@ -1,0 +1,174 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdbool.h>
+struct trojkat{
+double a,b,c;
+};
+
+double obwod(struct trojkat t){
+return t.a+t.b+t.c;
+}
+
+double pole(struct trojkat t){
+int p=(t.a+t.b+t.c)/2;
+return sqrt(p*(p-t.a)*(p-t.b)*(p-t.c));
+}
+
+bool czy_istnieje(struct trojkat t){
+if(t.a+t.b>t.c && t.a+t.c>t.b && t.b+t.c>t.a && t.a>0 && t.b>0 && t.c>0){
+    return true;
+}
+else return false;
+
+}
+
+void przepisz (struct trojkat t1,struct trojkat *t2){
+*t2=t1;
+}
+void wypisz(struct trojkat tr1){
+printf("%f\n",tr1.a);
+printf("%f\n",tr1.b);
+printf("%f\n",tr1.c);
+printf("\n");
+       }
+
+
+struct punkt{
+double x,y,z;
+};
+
+double odleglosc(struct punkt tab[]){
+return sqrt(pow(tab[1].x-tab[0].x,2)+pow(tab[1].y-tab[0].y,2)+pow(tab[1].z-tab[0].z,2));
+}
+
+int minimum(struct punkt tab[],int n){
+double temp;
+double min=sqrt(pow(tab[1].x-tab[0].x,2)+pow(tab[1].y-tab[0].y,2)+pow(tab[1].z-tab[0].z,2));
+for(int i=0;i<n-1;i++){
+    for(int j=i+1;j<n;j++){
+        temp = sqrt(pow(tab[j].x-tab[i].x,2)+pow(tab[j].y-tab[i].y,2)+pow(tab[j].z-tab[i].z,2));
+    }
+    if(temp<min){
+        min=temp;
+    }
+}
+return min;
+}
+
+struct zespolone{
+double a;
+double b;
+};
+
+void wyswietl_liczbe_zespolona(struct zespolone liczba){
+printf("%f + %f i\n",liczba.a,liczba.b);
+}
+void wczytaj_liczbe_zespolona(struct zespolone liczba){
+scanf("%lf",&liczba.a);
+scanf("%lf",&liczba.b);
+}
+
+double modul_liczby_zespolonej(struct zespolone liczba){
+return pow((liczba.a*liczba.a+liczba.b*liczba.b),0.5);
+}
+
+struct zespolone dodaj(struct zespolone liczba1,struct zespolone liczba2){
+struct zespolone suma;
+suma.a=liczba1.a+liczba2.a;
+suma.b=liczba1.b+liczba2.b;
+return suma;
+};
+
+///cw 7_2_10
+union super_int{
+int i;
+unsigned int u;
+};
+
+struct wiele_int{
+int i;
+unsigned int u;
+};
+
+///7_3_3
+struct element * dodajnapoczatek(struct element* Lista,int a){
+struct element *wsk=malloc(sizeof(struct element));
+wsk->i=a;
+wsk->next=Lista;
+return wsk;
+};
+
+int main()
+{
+struct trojkat t1;
+t1.a=3;
+t1.b=4;
+t1.c=5;
+printf("Obwod %f\n",obwod(t1));
+printf("Pole %f\n",pole(t1));
+printf("Czy istnieje %d\n",czy_istnieje(t1));
+printf("%d\n",sizeof(double));
+printf("%\n",sizeof(struct trojkat));
+
+struct trojkat tr1;
+tr1.a=3;
+tr1.b=4;
+tr1.c=5;
+struct trojkat tr2;
+tr2.a=1;
+tr2.b=1;
+tr2.c=1;
+struct trojkat *wsk2=&tr2;
+wypisz(tr1);
+wypisz(tr2);
+przepisz(tr1,wsk2);
+printf("Po zmianie\n");
+wypisz(tr1);
+wypisz(*wsk2);
+
+struct punkt P;
+P.x=1;
+P.y=3;
+P.z=5;
+struct punkt Q;
+Q.x=4;
+Q.y=2;
+Q.z=9;
+struct punkt R;
+Q.x=5;
+Q.y=0;
+Q.z=0;
+struct punkt tab[3]={P,Q,R};
+
+struct zespolone X;
+X.a=2;
+X.b=7;
+wyswietl_liczbe_zespolona(X);
+printf("Modul liczby zespolone wynosi %f\n",modul_liczby_zespolonej(X));
+
+struct zespolone Y;
+Y.a=4;
+Y.b=8;
+wyswietl_liczbe_zespolona(Y);
+struct zespolone Z;
+Z=dodaj(X,Y);
+wyswietl_liczbe_zespolona(Z);
+
+struct wiele_int H;
+union super_int J;
+printf("%d\n",sizeof(int));
+printf("%d\n",sizeof(unsigned int));
+///struktura
+printf("%d\n",sizeof(H));
+printf("%p\n",H);
+printf("%p\n",H.i);
+printf("%p\n",H.u);
+///unia
+printf("%d\n",sizeof(Y));
+printf("%p\n",J);
+printf("%p\n",J.i);
+printf("%p\n",J.u);
+
+    return 0;
+}
