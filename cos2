@@ -1,0 +1,123 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct element{
+int i;
+struct element * next;
+};
+
+struct element *utworz(){
+return NULL;
+};
+///7_3_2
+void wyczysc(struct element* Lista){
+struct element *wsk=Lista;
+while(Lista!=NULL){
+    Lista=Lista->next;
+    free(wsk);
+    wsk=Lista;
+
+}
+}
+
+///7_3_3
+struct element * dodajnapoczatek(struct element* Lista, int a){
+struct element *wsk=malloc(sizeof(struct element));
+wsk->i=a;
+wsk->next=Lista;
+return wsk;
+};
+///7_3_4
+struct element *dodajnakoniec(struct element * Lista, int a){
+struct element *wsk;
+if(Lista==NULL){
+    Lista=wsk=malloc(sizeof(struct element));
+}
+else{
+    wsk=Lista;
+    while(wsk->next!=NULL){
+        wsk=wsk->next;
+    }
+    wsk->next=malloc(sizeof(struct element));
+    wsk=wsk->next;
+}
+wsk->i-a;
+wsk->next=NULL;
+return Lista;
+};
+
+///7_3_5
+struct element * dodajodpowiednio(struct element* Lista, struct element* elem,int a){
+struct element * wsk=malloc(sizeof(struct element));
+wsk->i-a;
+if(elem==NULL){
+    wsk->next=Lista;
+    Lista=wsk;
+}
+else{
+    wsk->next=elem->next;
+    elem->next=wsk;
+}
+return Lista;
+};
+///7_3_24
+int suma(struct element* Lista){
+int sum=0;
+while(Lista !=NULL){
+    sum+=Lista->i;
+    Lista=Lista->next;
+}
+return sum;
+}
+
+
+void wypisz(struct element * Lista){
+while(Lista!=NULL){
+    printf("%d\n",Lista->i);
+    Lista=Lista->next;
+}
+printf("\n");
+}
+
+///7_3_6
+struct element * znajdz(struct element * Lista, int a){
+while((Lista!=NULL)&&(Lista->i!=a)){
+    Lista=Lista->next;
+}
+return Lista;
+};
+
+
+///7_3_31
+struct element* odwroc(struct element * lista){
+struct element * pom1, *pom2;
+if((Lista==NULL)||(Lista->next==NULL))
+    return Lista;
+pom1=Lista->next;
+pom2=pom1->next;
+Lista->next=NULL;
+while(pom2!=NULL){
+    Lista=pom1;
+    pom1=pom2;
+    pom2=pom2->next;
+    pom1->next=Lista;
+}
+return pom1;
+};
+
+
+int main()
+{
+
+///7_3_1
+struct element * Lista=utworz();
+///7_3_4
+Lista=dodajnakoniec(Lista,6);
+wypisz(Lista);
+Lista=dodajnakoniec(Lista,7);
+wypisz(Lista);
+Lista=dodajnakoniec(Lista,2);
+wypisz(Lista);
+Lista=dodajnakoniec(Lista,10);
+wypisz(Lista);
+    return 0;
+}
